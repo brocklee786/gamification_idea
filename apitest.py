@@ -10,7 +10,6 @@ with st.sidebar:
     openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
  
 st.title("Gamification")
-st.write('例：クーポンをより多く獲得させるアイディアを考えて。')
 # メッセージの初期状態を設定
 if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
