@@ -17,6 +17,7 @@ if "messages" not in st.session_state:
 
 # 質問を入力
 prompt = st.text_input('ゲーミフィケーションメカニズムを利用して実現したい体験を入力してください')
+st.write('例：クーポンをより多く獲得させるアイディアを考えて。')
 if prompt:
     st.write(prompt)
     if not openai_api_key:
