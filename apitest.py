@@ -16,7 +16,7 @@ if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
 
 # 質問を入力
-if prompt := st.text_input():
+if prompt = st.text_input('ゲーミフィケーションメカニズムを利用して実現したい体験を入力してください'):
     st.write(prompt)
     if not openai_api_key:
         st.info("Please add your OpenAI API key to continue.")
@@ -34,7 +34,7 @@ if prompt := st.text_input():
     perspectives = ['進展性', '希少性', '創造性','固有性','社会性','偶発性','忌避性','保持性','確率性']  # 例として3つの異なる観点
     with st.spinner('考えています...'):
         for i, perspective in enumerate(perspectives, start=1):
-            modified_prompt = f'{prompt} \n\n### {perspective}の観点ではどのようものが考えられる？一つ教えて。'
+            modified_prompt = f'{prompt} \n\n### {perspective}の観点では、この体験を実現させるのにどのようアイディアが考えられる？一つ教えて。'
             response = client.chat.completions.create(model="gpt-3.5-turbo", messages=[{"role": "system", "content": modified_prompt}])
             msg = response.choices[0].message.content
             if perspective=='進展性':
