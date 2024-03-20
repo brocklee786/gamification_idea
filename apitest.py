@@ -18,20 +18,12 @@ if prompt := st.chat_input():
         st.stop()
 
     client = OpenAI(api_key=openai_api_key)
-    perspectives = ['進展性', '希少性', '創造性']  # 例として3つの異なる観点
+    perspectives = ['進展性', '希少性', '創造性','固有性','社会性','偶発性','忌避性','保持性']  # 例として3つの異なる観点
     for i, perspective in enumerate(perspectives, start=1):
         st.subheader(f'Section {i}: {perspective}')
-        modified_prompt = f'{prompt} \n\n### から見た{perspective}の視点は？'
+        modified_prompt = f'{prompt} \n\n### {perspective}の観点ではどのようものが考えられる？'
         response = client.chat.completions.create(model="gpt-3.5-turbo", messages=[{"role": "system", "content": modified_prompt}])
-        msg1 = response.choices[0].message.content
+        msg = response.choices[0].message.content
+        st.write(msg)
         
-        
-
-    row1 = st.columns(3)
-    row1[0].markdown(msg1)
-    row2 = st.columns(3)
-
-    for col in row1 + row2:
-        tile = col.container
-        tile.title(":balloon:")
         
