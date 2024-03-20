@@ -16,7 +16,8 @@ if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
 
 # 質問を入力
-if prompt := st.chat_input():
+if prompt = st.text_input():
+    st.write(prompt)
     if not openai_api_key:
         st.info("Please add your OpenAI API key to continue.")
         st.stop()
